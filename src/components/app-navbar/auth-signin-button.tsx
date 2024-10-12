@@ -22,7 +22,15 @@ export default function AuthButton({ minimal = true }: { minimal?: boolean }) {
   if (status === "authenticated") {
     if (minimal) {
       return (
-        <Button onClick={() => signOut()} color="danger" variant="flat">
+        <Button
+          onClick={() =>
+            signOut({
+              callbackUrl: "/",
+            })
+          }
+          color="danger"
+          variant="flat"
+        >
           Sign out
         </Button>
       );
