@@ -219,9 +219,6 @@ const itemsForSale = [
 export default function ModernHomePageItemsGrid() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <h2 className="mb-8 text-center text-3xl font-bold">
-        Discover Amazing Deals
-      </h2>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {itemsForSale.map((item) => (
           <Card key={item.id} className="mx-auto max-w-sm">
@@ -251,16 +248,16 @@ export default function ModernHomePageItemsGrid() {
                 </Chip>
               </div>
               <h3 className="mb-1 text-lg font-semibold">{item.title}</h3>
-              <p className="text-default-500 mb-3 text-sm">
+              <p className="mb-3 text-sm text-default-500">
                 {item.description}
               </p>
               <div className="mb-3 flex w-full items-center justify-between">
-                <span className="text-primary text-xl font-bold">
+                <span className="text-xl font-bold text-primary">
                   ${item.price.toFixed(2)}
                 </span>
                 <div className="flex items-center">
-                  <IconHeart className="text-danger mr-1" />
-                  <span className="text-default-500 text-sm">{item.likes}</span>
+                  <IconHeart className="mr-1 text-danger" />
+                  <span className="text-sm text-default-500">{item.likes}</span>
                 </div>
               </div>
               <div className="mb-4 flex w-full items-center justify-between">
@@ -268,7 +265,7 @@ export default function ModernHomePageItemsGrid() {
                   <Avatar src={item.seller.avatar} size="sm" className="mr-2" />
                   <div>
                     <p className="text-sm font-semibold">{item.seller.name}</p>
-                    <p className="text-default-500 text-xs">
+                    <p className="text-xs text-default-500">
                       Rating: {item.seller.rating}/5
                     </p>
                   </div>
