@@ -13,12 +13,14 @@ import {
   NavbarMenuToggle,
 } from "@nextui-org/react";
 import { IconPackage } from "@tabler/icons-react";
+import { useSession } from "next-auth/react";
 
 import AuthButton from "./auth-signin-button";
 import { ThemeSwitcher } from "./theme-switcher";
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { status } = useSession();
 
   const menuItems = [
     {
@@ -29,15 +31,20 @@ export default function AppNavbar() {
       label: "About",
       href: "/about",
     },
-    {
-      label: "Profile",
-      href: "/Profile",
-    },
-    {
-      label: "Sale",
-      href: "/sale",
-    },
   ];
+
+  if (status === "authenticated") {
+    menuItems.push(
+      {
+        label: "Profile",
+        href: "/Profile",
+      },
+      {
+        label: "Sale",
+        href: "/sale",
+      }
+    );
+  }
 
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
@@ -79,9 +86,6 @@ export default function AppNavbar() {
         <NavbarItem>
           <ThemeSwitcher />
         </NavbarItem>
-        {/* <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem> */}
         <NavbarItem>
           <AuthButton minimal={false} />
         </NavbarItem>
