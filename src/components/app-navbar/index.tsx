@@ -3,7 +3,6 @@
 import React from "react";
 
 import {
-  Button,
   Link,
   Navbar,
   NavbarBrand,
@@ -15,9 +14,8 @@ import {
 } from "@nextui-org/react";
 import { IconPackage } from "@tabler/icons-react";
 
+import AuthButton from "./auth-signin-button";
 import { ThemeSwitcher } from "./theme-switcher";
-
-// import { AcmeLogo } from "./AcmeLogo.jsx";
 
 export default function AppNavbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -81,13 +79,11 @@ export default function AppNavbar() {
         <NavbarItem>
           <ThemeSwitcher />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">
+        {/* <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
-        </NavbarItem>
+        </NavbarItem> */}
         <NavbarItem>
-          <Button as={Link} color="warning" href="#" variant="flat">
-            Sign Up
-          </Button>
+          <AuthButton minimal={false} />
         </NavbarItem>
       </NavbarContent>
 
@@ -106,6 +102,9 @@ export default function AppNavbar() {
         ))}
         <NavbarMenuItem>
           <ThemeSwitcher showLabel />
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <AuthButton />
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>

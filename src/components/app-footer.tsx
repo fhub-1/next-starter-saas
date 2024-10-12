@@ -19,9 +19,9 @@ export default function AppFooter() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">About Us</h3>
             <p className="text-sm">
-              We're dedicated to providing the best service for selling your
-              items online. Our platform makes it easy to list and sell your old
-              stuff.
+              We&apos;re dedicated to providing the best service for selling
+              your items online. Our platform makes it easy to list and sell
+              your old stuff.
             </p>
           </div>
           <div className="space-y-4">
