@@ -1,13 +1,15 @@
 "use client";
 
+import Link from "next/link";
+
 import {
-  Avatar,
   Button,
   CircularProgress,
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  User,
 } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
@@ -29,20 +31,23 @@ export default function AuthButton({ minimal = true }: { minimal?: boolean }) {
     return (
       <Dropdown placement="bottom-end">
         <DropdownTrigger>
-          <Avatar
-            isBordered
-            as="button"
-            className="transition-transform"
-            showFallback={!data.user?.image}
-            src={data.user?.image || ""}
+          <User
+            name={data.user?.name}
+            description={data.user?.email}
+            avatarProps={{
+              showFallback: !data.user?.image,
+              src: data.user?.image || "",
+            }}
           />
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
-          <DropdownItem key="profile" className="h-14 gap-2">
+          {/* <DropdownItem key="profile" className="h-14 gap-2">
             <p className="font-semibold">{data.user?.name}</p>
             <p className="font-semibold">{data.user?.email}</p>
+          </DropdownItem> */}
+          <DropdownItem key="settings">
+            <Link href="/profile">Profile</Link>{" "}
           </DropdownItem>
-          <DropdownItem key="settings">Profile</DropdownItem>
           <DropdownItem key="analytics">Analytics</DropdownItem>
           <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
           <DropdownItem
