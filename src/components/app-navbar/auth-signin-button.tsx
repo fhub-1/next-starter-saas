@@ -13,7 +13,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function AuthButton({ minimal = true }: { minimal?: boolean }) {
   const { data, status } = useSession();
-  // const router = useRouter();
 
   if (status === "loading") {
     return <CircularProgress />;
@@ -22,15 +21,7 @@ export default function AuthButton({ minimal = true }: { minimal?: boolean }) {
   if (status === "authenticated") {
     if (minimal) {
       return (
-        <Button
-          onClick={() =>
-            signOut({
-              callbackUrl: "/",
-            })
-          }
-          color="danger"
-          variant="flat"
-        >
+        <Button color="danger" variant="flat">
           Sign out
         </Button>
       );
@@ -54,7 +45,15 @@ export default function AuthButton({ minimal = true }: { minimal?: boolean }) {
           <DropdownItem key="settings">Profile</DropdownItem>
           <DropdownItem key="analytics">Analytics</DropdownItem>
           <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-          <DropdownItem onClick={() => signOut()} key="logout" color="danger">
+          <DropdownItem
+            onClick={() =>
+              signOut({
+                callbackUrl: "/",
+              })
+            }
+            key="logout"
+            color="danger"
+          >
             Log Out
           </DropdownItem>
         </DropdownMenu>
@@ -62,16 +61,7 @@ export default function AuthButton({ minimal = true }: { minimal?: boolean }) {
     );
   }
   return (
-    <Button
-      onClick={() =>
-        signIn("google", {
-          callbackUrl: "/sale",
-        })
-      }
-      color="danger"
-      href="/auth"
-      variant="flat"
-    >
+    <Button onClick={() => signIn()} color="danger" variant="flat">
       Sign in
     </Button>
   );

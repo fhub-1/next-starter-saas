@@ -37,7 +37,7 @@ export default function AppNavbar() {
     menuItems.push(
       {
         label: "Profile",
-        href: "/Profile",
+        href: "/profile",
       },
       {
         label: "Sale",
