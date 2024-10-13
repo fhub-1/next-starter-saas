@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import { Button } from "@nextui-org/button";
@@ -13,6 +14,7 @@ export default function ImprovedSellItemCard() {
   const [itemImage, setItemImage] = useState(
     "/placeholder.svg?height=300&width=300"
   );
+  const router = useRouter();
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -34,8 +36,8 @@ export default function ImprovedSellItemCard() {
   return (
     <Card className="mx-auto max-w-2xl">
       <CardHeader className="flex flex-col items-start px-6 pb-0 pt-6">
-        <h4 className="text-primary text-2xl font-bold">Sell Your Item</h4>
-        <p className="text-default-500 text-sm">List your old stuff for sale</p>
+        <h4 className="text-2xl font-bold text-primary">Sell Your Item</h4>
+        <p className="text-sm text-default-500">List your old stuff for sale</p>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
         <form
@@ -57,7 +59,7 @@ export default function ImprovedSellItemCard() {
               type="file"
               accept="image/*"
               onChange={handleImageUpload}
-              className="text-default-500 mt-4 text-sm"
+              className="mt-4 text-sm text-default-500"
             />
           </div>
           <div className="flex flex-col gap-4 md:col-span-1">
@@ -89,7 +91,7 @@ export default function ImprovedSellItemCard() {
               placeholder="Enter price"
               startContent={
                 <div className="pointer-events-none flex items-center">
-                  <span className="text-default-400 text-small">$</span>
+                  <span className="text-small text-default-400">$</span>
                 </div>
               }
               type="number"
@@ -107,7 +109,12 @@ export default function ImprovedSellItemCard() {
         </form>
       </CardBody>
       <CardFooter className="flex justify-end px-6 pb-6 pt-0">
-        <Button color="primary" size="lg" type="submit">
+        <Button
+          color="primary"
+          size="lg"
+          type="submit"
+          onClick={() => router.push("/")}
+        >
           List for Sale
         </Button>
       </CardFooter>

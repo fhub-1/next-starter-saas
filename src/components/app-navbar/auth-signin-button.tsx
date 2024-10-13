@@ -21,7 +21,7 @@ export default function AuthButton({ minimal = true }: { minimal?: boolean }) {
   if (status === "authenticated") {
     if (minimal) {
       return (
-        <Button onClick={() => signOut()} color="danger" variant="flat">
+        <Button color="danger" variant="flat">
           Sign out
         </Button>
       );
@@ -42,10 +42,18 @@ export default function AuthButton({ minimal = true }: { minimal?: boolean }) {
             <p className="font-semibold">{data.user?.name}</p>
             <p className="font-semibold">{data.user?.email}</p>
           </DropdownItem>
-          <DropdownItem key="settings">My Settings</DropdownItem>
+          <DropdownItem key="settings">Profile</DropdownItem>
           <DropdownItem key="analytics">Analytics</DropdownItem>
           <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-          <DropdownItem onClick={() => signOut()} key="logout" color="danger">
+          <DropdownItem
+            onClick={() =>
+              signOut({
+                callbackUrl: "/",
+              })
+            }
+            key="logout"
+            color="danger"
+          >
             Log Out
           </DropdownItem>
         </DropdownMenu>
@@ -53,12 +61,7 @@ export default function AuthButton({ minimal = true }: { minimal?: boolean }) {
     );
   }
   return (
-    <Button
-      onClick={() => signIn("google")}
-      color="danger"
-      href="/auth"
-      variant="flat"
-    >
+    <Button onClick={() => signIn()} color="danger" variant="flat">
       Sign in
     </Button>
   );
